@@ -90,7 +90,6 @@ sudo ./hare-krishna3.sh --version     # Show tool version
 | `--logs`   | View log history                        |
 | `--update` | Check and apply updates (via Git)       |
 | `--version`| Show current version                    |
-| `-nb`      | No banner mode                          |
 | `--debug`  | Enable debug output                     |
 | `-h`       | Help / usage guide                      |
 
@@ -125,6 +124,7 @@ Pull requests, improvements, and suggestions are always welcome.
 📧 Author: CYBER-MRINAL  
 🔗 GitHub: [CYBER-MRINAL](https://github.com/CYBER-MRINAL)  
 🛕 Inspired by ancient wisdom, coded for modern defense.
+For more query go to my [telegram](https://t.me/cybermrinalgroup/3)
 
 ---
 
