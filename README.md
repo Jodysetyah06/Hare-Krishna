@@ -58,9 +58,9 @@ sudo ./setup.py
 ➡️ After setup, run the tool via:
 
 ```bash
-sudo hare-krishna --help
+sudo hare-krishna -h 
 ```
-
+(To show arguments/help funciton)
 ---
 
 ## 💻 Usage
