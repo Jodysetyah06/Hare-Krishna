@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ─────────────────────────────────────────────
-# Anonymizer Script v2.3
+# Anonymizer Script v1.0
 # Author: CYBER-MRINAL
 # Date: 2025-06-25
 # Description: Advanced MAC/IP/Tor anonymization tool
