@@ -221,37 +221,41 @@ update_tool() {
         exit 1
     fi
 
+    # Determine the script's directory
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    REPO_DIR="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)"
+
     # Check if inside a Git repo
-    if [[ ! -d .git ]]; then
+    if [[ -z "$REPO_DIR" ]]; then
         echo "❌ This is not a Git repository. Cannot perform self-update."
         log "Update failed: .git directory missing."
         exit 1
     fi
 
     # Check if remote is reachable
-    if ! git ls-remote &>/dev/null; then
+    if ! git -C "$REPO_DIR" ls-remote &>/dev/null; then
         echo "❌ Remote repository not reachable. Check internet or repo URL."
         log "Update failed: cannot reach remote."
         exit 1
     fi
 
     # Backup script
-    cp "$0" "$0.bak" 2>/dev/null || {
+    cp "$SCRIPT_DIR/$(basename "$0")" "$SCRIPT_DIR/$(basename "$0").bak" 2>/dev/null || {
         echo "❌ Failed to create backup. Update aborted."
         log "Update failed: cannot create backup."
         exit 1
     }
 
     # Fetch latest
-    if ! git fetch origin master &>/dev/null; then
+    if ! git -C "$REPO_DIR" fetch origin master &>/dev/null; then
         echo "❌ Git fetch failed. Update aborted."
         log "Update failed: git fetch origin master."
         exit 1
     fi
 
     # Check if update needed
-    LOCAL_HASH=$(git rev-parse HEAD)
-    REMOTE_HASH=$(git rev-parse origin/master)
+    LOCAL_HASH=$(git -C "$REPO_DIR" rev-parse HEAD)
+    REMOTE_HASH=$(git -C "$REPO_DIR" rev-parse origin/master)
 
     if [[ "$LOCAL_HASH" == "$REMOTE_HASH" ]]; then
         echo "✅ Already up-to-date (version: $version)"
@@ -260,15 +264,15 @@ update_tool() {
     fi
 
     # Perform the update
-    if git pull origin master --rebase; then
-        chmod +x "$0"
+    if git -C "$REPO_DIR" pull origin master --rebase; then
+        chmod +x "$SCRIPT_DIR/$(basename "$0")"
         log "Update successful. Now running version: $version"
         echo "✅ Update successful. Now running version: $version"
         exit 0
     else
         echo "❌ Update failed. Restoring backup version..."
-        mv "$0.bak" "$0"
-        chmod +x "$0"
+        mv "$SCRIPT_DIR/$(basename "$0").bak" "$SCRIPT_DIR/$(basename "$0")"
+        chmod +x "$SCRIPT_DIR/$(basename "$0")"
         log "Update failed. Restored previous version."
         exit 1
     fi
