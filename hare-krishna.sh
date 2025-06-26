@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # ─────────────────────────────────────────────
-# Anonymizer Script v1.0
+# Anonymizer Script v1.1
 # Author: CYBER-MRINAL
 # Date: 2025-06-25
 # Description: Advanced MAC/IP/Tor anonymization tool
 # ─────────────────────────────────────────────
 
 # Global vars
-version="v1.0"
+version="v1.1"
 interface=""
 original_mac=""
 original_ip=""
@@ -20,14 +20,16 @@ session_id=$(uuidgen 2>/dev/null || cat /proc/sys/kernel/random/uuid)
 debug_mode=false
 
 # ─────────────────────────────────────────────
+
 log() {
-    echo "[$(date +'%F %T')] [$session_id] $1" | tee -a "$log_file"
+    echo -e "[\033[0;32m$(date +'%F %T')\033[0m] [\033[0;34m$session_id\033[0m] $1" | tee -a "$log_file"
 }
+
 
 display_banner() {
     echo -e "\033[1;36m"
     echo "       ╔════════════════════════════════════════════╗"
-    echo "       ║            🔒 HARE KRISHNA  v1.0           ║"
+    echo "       ║            🔒 HARE KRISHNA  v1.1           ║"
     echo "       ╠════════════════════════════════════════════╣"
     echo "       ║  MAC/IP randomizer & Tor-based proxy tool  ║"
     echo "       ╚════════════════════════════════════════════╝"
@@ -46,6 +48,7 @@ Options:
   -s               Show anonymization status
   --logs           View anonymizer logs
   --debug          Enable debug output
+  --cti            Check your public ip address in tor
   --version        Show Version of this script
   --update         Update to latest version if avaliable
   -h, --help       Show help message
@@ -127,8 +130,6 @@ start_anonymization() {
     export http_proxy="socks5h://127.0.0.1:9050"
     export https_proxy="socks5h://127.0.0.1:9050"
 
-    new_ip=$(curl --max-time 10 -s --proxy socks5h://127.0.0.1:9050 http://api.ipify.org)
-    log "Tor IP      : ${new_ip:-Unavailable (timeout or proxy error)}"
     log "Anonymization started."
     echo -e "\033[1;31m"
     echo "✅ Anonymization complete."
@@ -148,7 +149,7 @@ stop_anonymization() {
 
     sudo systemctl stop "$tor_service"
     unset http_proxy https_proxy
-    log "Tor stopped. Original settings restored."
+    log ">> Tor stopped. Original settings restored. Don't worry"
 
     rm -f "$state_file"
 }
@@ -182,13 +183,20 @@ status() {
         echo "MAC Address : Unavailable"
     fi
     echo "Tor Running : $(systemctl is-active "$tor_service")"
-    tor_ip=$(curl --max-time 10 -s --proxy socks5h://127.0.0.1:9050 http://api.ipify.org)
-    echo "Tor IP      : ${tor_ip:-Unavailable (check proxy/Tor)}"
     echo "───────────── END REPORT ────────────────"
 }
 
 show_version() {
     echo "🔖 Hare Krishna Tool Version: $version"
+}
+
+check_ip_tor() {
+    echo -e "\033[1;33m"
+    echo "  ->> Wait for 15 secound. Tor can take some time" 
+    echo -e "\033[0m"
+    sleep 5
+    tor_ip=$(curl --max-time 10 -s --proxy socks5h://127.0.0.1:9050 http://api.ipify.org)
+    log "New Tor IP  : ${tor_ip:-Unavailable}"
 }
 
 trap_ctrlc() {
@@ -200,7 +208,7 @@ trap_ctrlc() {
 trap trap_ctrlc INT
 
 view_logs() {
-    [[ -f "$log_file" ]] && cat "$log_file" || echo "No logs found."
+    [[ -f "$log_file" ]] && (echo -e "\033[0;34mLogs:\033[0m" && cat "$log_file") || echo "No logs found."
 }
 
 update_tool() {
@@ -286,6 +294,7 @@ while [[ "$#" -gt 0 ]]; do
         --logs) view_logs; exit 0 ;;
         --debug) debug_mode=true ;;
         -nb) show_banner=false ;;
+        -cti) check_ip_tor; action_run=true;;
         --version) show_version; exit 0 ;;
         --update) update_tool; exit 0 ;;
         -h|--help) usage ;;
@@ -295,4 +304,3 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 [[ "$action_run" = false ]] && status
-
