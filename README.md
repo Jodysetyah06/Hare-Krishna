@@ -1,4 +1,4 @@
-# 🔒 HARE KRISHNA - Anonymizer Tool v1.0
+# 🔒 HARE KRISHNA - Anonymizer Tool v1.1
 
 ![banner](https://img.shields.io/badge/Bash-Anonymizer-blue.svg) ![license](https://img.shields.io/badge/License-MIT-green.svg)
 
@@ -51,8 +51,8 @@ It combines **MAC address spoofing**, **IP obfuscation**, and **Tor-based routin
 ```bash
 git clone https://github.com/CYBER-MRINAL/Hare-Krishna.git
 cd Hare-Krishna
-chmod +x setup.py
-sudo ./setup.py
+chmod +x setup.sh
+sudo ./setup.sh
 ```
 
 ➡️ After setup, run the tool via:
@@ -66,14 +66,15 @@ sudo hare-krishna -h
 ## 💻 Usage
 
 ```bash
-sudo ./hare-krishna3.sh -st           # Start anonymization
-sudo ./hare-krishna3.sh -sp           # Stop and restore original state
-sudo ./hare-krishna3.sh -cmc -m XX:XX:XX:XX:XX:XX   # Change MAC manually
-sudo ./hare-krishna3.sh -cip          # Change IP via Tor
-sudo ./hare-krishna3.sh -s            # Show anonymization status
-sudo ./hare-krishna3.sh --logs        # View logs
-sudo ./hare-krishna3.sh --update      # Update tool from GitHub
-sudo ./hare-krishna3.sh --version     # Show tool version
+sudo ./hare-krishna.sh -st           # Start anonymization
+sudo ./hare-krishna.sh -sp           # Stop and restore original state
+sudo ./hare-krishna.sh -cmc -m XX:XX:XX:XX:XX:XX   # Change MAC manually
+sudo ./hare-krishna.sh -cip          # Change IP via Tor
+sudo ./hare-krishna.sh -s            # Show anonymization status
+sudo ./hare-krishna.sh --cti          # To show your tor ip address 
+sudo ./hare-krishna.sh --logs        # View logs
+sudo ./hare-krishna.sh --update      # Update tool from GitHub
+sudo ./hare-krishna.sh --version     # Show tool version
 ```
 
 ---
@@ -88,6 +89,7 @@ sudo ./hare-krishna3.sh --version     # Show tool version
 | `-cip`     | Change IP (restart Tor)                 |
 | `-s`       | Show status                             |
 | `--logs`   | View log history                        |
+| `--cti`    | To see tor ip address                   |
 | `--update` | Check and apply updates (via Git)       |
 | `--version`| Show current version                    |
 | `--debug`  | Enable debug output                     |
@@ -114,6 +116,7 @@ Always run as **root or with sudo**, and make sure to:
 | `MAC not changing`          | Ensure interface is down during change |
 | `No internet after start`   | Check DNS leaks or firewall rules |
 | `Update fails`              | Use `git pull` or re-clone manually |
+| `proxy-setting`             | Make sure you fix your browser and system proxy setting to use it. |
 
 ---
 
@@ -124,7 +127,7 @@ Pull requests, improvements, and suggestions are always welcome.
 📧 Author: CYBER-MRINAL  
 🔗 GitHub: [CYBER-MRINAL](https://github.com/CYBER-MRINAL)  
 🛕 Inspired by ancient wisdom, coded for modern defense.
-For more query go to my [telegram](https://t.me/cybermrinalgroup/3)
+For more query and issue go to my [telegram](https://t.me/cybermrinalgroup/3) and ask me.
 
 ---
 
