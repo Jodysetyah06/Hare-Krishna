@@ -71,7 +71,7 @@ sudo ./hare-krishna.sh -sp           # Stop and restore original state
 sudo ./hare-krishna.sh -cmc -m XX:XX:XX:XX:XX:XX   # Change MAC manually
 sudo ./hare-krishna.sh -cip          # Change IP via Tor
 sudo ./hare-krishna.sh -s            # Show anonymization status
-sudo ./hare-krishna.sh --cti          # To show your tor ip address 
+sudo ./hare-krishna.sh --cti         # To show your tor ip address 
 sudo ./hare-krishna.sh --logs        # View logs
 sudo ./hare-krishna.sh --update      # Update tool from GitHub
 sudo ./hare-krishna.sh --version     # Show tool version
