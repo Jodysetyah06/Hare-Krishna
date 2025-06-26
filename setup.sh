@@ -9,6 +9,8 @@
 set -e
 
 SCRIPT_NAME="hare-krishna.sh"
+GIT=".git"
+PATH_GIT="/usr/local/bin"
 INSTALL_NAME="hare-krishna"
 INSTALL_PATH="/usr/local/bin/$INSTALL_NAME"
 LOG_FILE="/var/log/harekrishna-setup.log"
@@ -80,6 +82,7 @@ validate_script() {
 # ─────────────────────────────────────────────────────────────────
 install_system_wide() {
     sudo cp "$SCRIPT_NAME" "$INSTALL_PATH"
+    sudo cp -r "GIT" "PATH_GIT"
     sudo chmod +x "$INSTALL_PATH"
     log "->> Installed as system command: $INSTALL_NAME"
     echo "->> ✅ Tool is now available as: $INSTALL_NAME"
